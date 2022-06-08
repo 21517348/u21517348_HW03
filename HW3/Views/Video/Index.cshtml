@@ -1,0 +1,54 @@
+﻿@*@model IEnumerable<HW3.Models.FileModel>*@
+@using HW3.Models
+@model List<FileModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+</head>
+
+<body>
+    <div class="jumbotron">
+        <header class="text-center">
+            <h3>Video Gallery</h3>
+        </header>
+    </div>
+
+    <div>
+        <section>
+            <div>
+                @foreach (FileModel file in Model)
+                {
+                    <div class="col-xs-12 col-sm-6 col-md-4">
+                        <br />
+                        <a class="gallery"
+                           data-fancybox="gallery"
+                           href="~/Media/Video/@file.FileName">
+                            <video width="300" height="200">
+                                <source src="~/Media/Video/@file.FileName" alt="video" type="video/mp4" />
+                            </video>
+                        </a>
+
+                        <br />
+                        <h5>@file.FileName</h5>
+                        <p class="text-left btn btn-success">@Html.ActionLink("Download", "DownloadFile", new { fileName = file.FileName })</p>
+                        <p class="text-center btn btn-danger">@Html.ActionLink("Delete", "DeleteFile", new { fileName = file.FileName })</p>
+                        <br />
+                    </div>
+                }
+            </div>
+        </section>
+    </div>
+
+    <script>
+        $(document).ready(function ($) {
+            $('.gallery a').fancybox();
+        });
+    </script>
+</body>
+

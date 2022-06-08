@@ -1,0 +1,46 @@
+﻿@using HW3.Models
+
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="container bg-info">
+    <div class="row">
+
+        <div class="col-xs-12 col-sm-6 col-md-6">
+            <h3>Desciption</h3>
+
+            <p>
+                This system is a Media uploading system , which takes allows the user to upload files<br />
+                from the user's computer and displays the uploaded files as a table.<br />
+                The system have five views which all are different from each other.<br />
+                The Home view is where the user selects the type of files that wants to be uploaded<br />
+                The Files view is the one responsible for displaying all the uploaded files as a table with some addictional functionalities , like<br />
+                download or delete files selected from or to the user's computer.<br />
+                The Image view displays all the images uploaded using a fancy box.<br />
+                The Videos view displays all the videos uploaded.<br />
+                The About Me view is where the biography of the developer is displayed together with the image of the developer
+            </p>
+
+        </div>
+
+
+        @using (Html.BeginForm("Index", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <div class="col-xs-12 col-sm-6 col-md-6">
+                <h3>Option Selection</h3>
+
+                <input @ViewBag.Documents type="radio" name="FileType" value="Documents" /> Documents<br />
+                <input @ViewBag.Image type="radio" name="FileType" value="Image" /> Image<br />
+                <input @ViewBag.Video type="radio" name="FileType" value="Video" /> Video<br />
+                <input type=file name="Files" /><br />
+                <input type="submit" value="Submit" /><br />
+                @ViewBag.Message
+
+            </div>
+        }
+
+
+    </div>
+</div>

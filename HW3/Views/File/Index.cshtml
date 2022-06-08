@@ -1,0 +1,42 @@
+﻿@*@model IEnumerable<HW3.Models.FileModel>*@
+@using HW3.Models
+@model List<FileModel>
+
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<div class="jumbotron">
+    <header>
+        <h3 class="text-center">Table Data</h3>
+    </header>
+    
+    <br />
+    <br />
+    
+    <table class="table table-responsive ">
+        <thead class="bg-success">
+            <tr>
+                <th class="text-center">File Name</th>
+                <th class="text-center">DOWNLOAD OPTION</th>
+                <th class="text-center">DELETE OPTION</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @*To create the rows for the table*@
+            @foreach (FileModel file in Model)
+            {
+                <tr>
+                    <td>@file.FileName</td>
+                    <td class="text-center btn btn-success">@Html.ActionLink("Download", "DownloadFile", new { fileName = file.FileName })</td>
+                    <td class="text-center btn btn-danger">@Html.ActionLink("Delete", "DeleteFile", new { fileName = file.FileName })</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>
+
